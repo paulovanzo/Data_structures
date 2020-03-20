@@ -6,6 +6,7 @@
 /* *!
 * Print the table ’s header to the terminal ( std :: cout ).
 * @param fields_ Reference to the list of header fields to be printed .
+*/
 
 void printHeader( const std::vector < std::string > &fields_ ) {
     
@@ -23,35 +24,35 @@ void printHeader( const std::vector < std::string > &fields_ ) {
     std::cout << '+' << std::endl;
 
 }
-*/
 
-void read_vec(std::vector < std::string > numbers){
+void read_vec(std::vector < std::string > &numbers){
 
     std::string str{""};
 
-    for(size_t i{0}; std::cin.eof(); ++i){
-        getline(std::cin,str);
-        numbers[i] = str;
+    for(size_t i{0}; !std::cin.eof(); ++i){
+        std::cin >> str;
+        numbers.push_back(str);
     }
 
 }
 
-void print_vec(std::vector < std::string > numbers, std::ofstream &output){
+void print_vec(std::vector < std::string > &numbers, std::ofstream &output){
+
+    output.open("output.txt");
+
+    output << "| ";
 
     for( std::string i : numbers){
-        output.write(std::cout,output);
+        output << i << " | ";
     }
-    std::cout << "|" << std::endl;
 
 }
 
 int main(){
 
-    /*
     std::vector < std::string > fieldNames = { " ITEM " , " QUANTIDADE " , " VALOR UNITARIO " };
+
     printHeader ( fieldNames ); // Imprimir cabecalho da tabela .
-    Código PrintHeader
-    */
 
     std::ofstream output;
 
@@ -59,8 +60,7 @@ int main(){
 
     read_vec(numbers);
 
-    //print_vec(numbers, output);
-
+    print_vec(numbers, output);
 
     return 0;
 }
